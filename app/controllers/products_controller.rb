@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     render json: @product, status: 200
+    # render json: @product.to_json(include: :reviews)
   end
 
   private

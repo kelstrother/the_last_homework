@@ -179,3 +179,32 @@ Migrating to AddProductIdToReviews (20210225023831)
   [1m[36mProduct Load (0.4ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
   [1m[36mReview Load (0.2ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."product_id" = $1 /* loading for inspect */ LIMIT $2[0m  [["product_id", 1], ["LIMIT", 11]]
   [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."product_id" = $1 /* loading for inspect */ LIMIT $2[0m  [["product_id", 1], ["LIMIT", 11]]
+Started GET "/products/2/reviews" for ::1 at 2021-02-24 20:19:24 -0700
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ReviewsController#index as HTML
+  Parameters: {"product_id"=>"2"}
+  [1m[36mProduct Load (1.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:6:in `index'
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."product_id" = $1[0m  [["product_id", 2]]
+  ↳ app/controllers/reviews_controller.rb:8:in `index'
+Completed 200 OK in 62ms (Views: 5.5ms | ActiveRecord: 19.6ms | Allocations: 12069)
+
+
+Started GET "/products/1/reviews" for ::1 at 2021-02-24 20:19:33 -0700
+Processing by ReviewsController#index as HTML
+  Parameters: {"product_id"=>"1"}
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/reviews_controller.rb:6:in `index'
+  [1m[36mReview Load (0.4ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."product_id" = $1[0m  [["product_id", 1]]
+  ↳ app/controllers/reviews_controller.rb:8:in `index'
+Completed 200 OK in 23ms (Views: 11.1ms | ActiveRecord: 9.9ms | Allocations: 4647)
+
+
+Started GET "/products/1/reviews" for ::1 at 2021-02-24 20:25:01 -0700
+Processing by ReviewsController#index as HTML
+  Parameters: {"product_id"=>"1"}
+  [1m[36mReview Load (0.3ms)[0m  [1m[34mSELECT "reviews".* FROM "reviews" WHERE "reviews"."product_id" = $1[0m  [["product_id", 1]]
+  ↳ app/controllers/reviews_controller.rb:8:in `index'
+Completed 200 OK in 41ms (Views: 28.4ms | ActiveRecord: 9.0ms | Allocations: 4816)
+
+
